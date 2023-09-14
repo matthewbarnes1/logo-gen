@@ -11,7 +11,7 @@ inquirer
         if (value.length === 3) {
           return true;
         } else {
-          return 'Username should be exactly 3 characters';
+          return 'Logo text should be exactly 3 characters';
         }
       }
     },
@@ -53,5 +53,5 @@ inquirer
     }
 
     shapeObject.saveToFile('examples/output.svg');
-    console.log('Logo saved to output.svg');
+    console.log('Logo successfully saved to output.svg');
   });
