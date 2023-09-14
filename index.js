@@ -1,12 +1,5 @@
 import inquirer from 'inquirer';
-import { generateSVG, saveSVGToFile } from './lib/shapes.js';
-
-const shapeObject = {
-    text: "",
-    textColor: "",
-    shapeType: "",
-    shapeColor: ""
-};
+import { Circle, Square, Triangle } from './lib/shapes.js';
 
 inquirer
   .prompt([
@@ -14,42 +7,51 @@ inquirer
       type: 'input',
       message: 'Enter text for logo (3 characters max.): ',
       name: 'logoText',
-      // ? Validate + function will only allow for 3 char input. Prompts will be halted until 3 char input. 
       validate: function(value) {
         if (value.length === 3) {
           return true;
         } else {
           return 'Username should be exactly 3 characters';
         }
-    }},
+      }
+    },
     {
       type: 'input',
       message: 'Enter the text color or hex #: ',
       name: 'textColor',
     },
     {
-        type: 'list',
-        message: 'Please select logo shape: ',
-        name: 'logoShape',
-        choices: ['circle', 'triangle', 'square'],
-      },
+      type: 'list',
+      message: 'Please select logo shape: ',
+      name: 'logoShape',
+      choices: ['circle', 'triangle', 'square'],
+    },
     {
-        type: 'input',
-        message: 'Enter the shape color or hex #:',
-        name: 'shapeColor',
-      },
+      type: 'input',
+      message: 'Enter the shape color or hex #:',
+      name: 'shapeColor',
+    },
 
   ])
-  //* This needs to be fixed to validate the responses instead of the old stuff
   .then(response => {
-    const { logoText, textColor, logoShape: shape, shapeColor } = response;
+    const { logoText, textColor, logoShape, shapeColor } = response;
 
-    shapeObject.text = logoText;
-    shapeObject.textColor = textColor;
-    shapeObject.shapeType = shape;
-    shapeObject.shapeColor = shapeColor;
+    let shapeObject;
+    switch (logoShape) {
+      case 'circle':
+        shapeObject = new Circle(logoText, textColor, shapeColor);
+        break;
+      case 'triangle':
+        shapeObject = new Triangle(logoText, textColor, shapeColor);
+        break;
+      case 'square':
+        shapeObject = new Square(logoText, textColor, shapeColor);
+        break;
+      default:
+        console.error("Invalid shape type!");
+        return;
+    }
 
-    const svgContent = generateSVG(shapeObject);
-    saveSVGToFile(svgContent, 'output.svg');
+    shapeObject.saveToFile('examples/output.svg');
     console.log('Logo saved to output.svg');
   });
