@@ -1,4 +1,12 @@
 import inquirer from 'inquirer';
+import { generateSVG, saveSVGToFile } from './lib/shapes.js';
+
+const shapeObject = {
+    text: "",
+    textColor: "",
+    shapeType: "",
+    shapeColor: ""
+};
 
 inquirer
   .prompt([
@@ -33,8 +41,15 @@ inquirer
 
   ])
   //* This needs to be fixed to validate the responses instead of the old stuff
-  .then((response) =>
-    response.confirm === response.password
-      ? console.log('Success!')
-      : console.log('You forgot your password already?!')
-  );
+  .then(response => {
+    const { logoText, textColor, logoShape: shape, shapeColor } = response;
+
+    shapeObject.text = logoText;
+    shapeObject.textColor = textColor;
+    shapeObject.shapeType = shape;
+    shapeObject.shapeColor = shapeColor;
+
+    const svgContent = generateSVG(shapeObject);
+    saveSVGToFile(svgContent, 'output.svg');
+    console.log('Logo saved to output.svg');
+  });

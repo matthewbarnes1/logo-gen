@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "inquirer": "^9.2.11",
     "node-fetch": "^2.6.1"
   },
