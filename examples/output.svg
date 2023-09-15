@@ -1,0 +1,4 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="100,50 150,150 50,150" fill="red" />
+                  <text x="100" y="100" font-family="Arial" font-size="24" fill="black" text-anchor="middle" dy=".3em">qwe</text>
+                </svg>
