@@ -17,7 +17,7 @@
 - Jest (for tests)
 
 ## Walkthrough video
-[YouTube Walkthrough](https://www.youtube.com/watch?v=8KcO-9d6rmI)
+[YouTube Walkthrough](https://youtu.be/8KcO-9d6rmI)
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
